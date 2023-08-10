@@ -20,6 +20,9 @@ public class User {
    private String email;
 
    public User() {}
+
+   @OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+   private Car car;
    
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
@@ -57,5 +60,14 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public Car getCar() {
+      return car;
+   }
+
+   public Car setCar(Car car) {
+      this.car = car;
+      return car;
    }
 }
