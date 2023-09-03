@@ -21,7 +21,6 @@ public class MainApp {
       User user7 = new User("Kamala", "Harris", "KH@gmail.com");
       User user8 = new User("Sergey", "Lavrov", "SL@mid.ru");
 
-
       Car car5 = new Car("BMW", 3);
       Car car6 = new Car("Lada", 1968);
       Car car7 = new Car("Niva", 1975);
@@ -31,12 +30,6 @@ public class MainApp {
       userService.add(user6.setCar(car6).setUser(user6));
       userService.add(user7.setCar(car7).setUser(user7));
       userService.add(user8.setCar(car8).setUser(user8));
-
-
-//      userService.add(new User("User1", "Lastname1", "user1@mail.ru"));
-//      userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
-//      userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
-//      userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
 
 
       List<User> users = userService.listUsers();
