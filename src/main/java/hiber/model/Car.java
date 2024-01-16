@@ -1,8 +1,13 @@
 package hiber.model;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@AllArgsConstructor
 @Table(name = "cars")
 public class Car {
 
@@ -15,7 +20,6 @@ public class Car {
 
     @Column(name = "series")
     private int series;
-    public Car() {}
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id")
@@ -25,6 +29,8 @@ public class Car {
         this.model = model;
         this.series = series;
     }
+
+    public Car() {}
 
     public Long getId() {
         return id;
@@ -57,6 +63,19 @@ public class Car {
     public User setUser(User user) {
         this.user = user;
         return user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return series == car.series && Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(user, car.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series, user);
     }
 
     @Override

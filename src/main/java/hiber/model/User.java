@@ -1,8 +1,12 @@
 package hiber.model;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -19,8 +23,6 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   public User() {}
-
    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
    private Car car;
    
@@ -29,6 +31,8 @@ public class User {
       this.lastName = lastName;
       this.email = email;
    }
+
+   public User() {}
 
    public Long getId() {
       return id;
@@ -69,5 +73,29 @@ public class User {
    public Car setCar(Car car) {
       this.car = car;
       return car;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      User user = (User) o;
+      return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(car, user.car);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, firstName, lastName, email, car);
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", car=" + car +
+              '}';
    }
 }
