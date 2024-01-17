@@ -25,12 +25,12 @@ public class Car {
     @JoinColumn(name = "users_id")
     private User user;
 
+    public Car() {}
+
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
     }
-
-    public Car() {}
 
     public Long getId() {
         return id;
